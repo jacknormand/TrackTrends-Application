@@ -1,3 +1,4 @@
-/Users/jackynorm/GitHub/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/GreetingController.java
-/Users/jackynorm/GitHub/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/Greeting.java
-/Users/jackynorm/GitHub/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/TracktrendsApplication.java
+/Users/jackynorm/GitHub/frontend-tracktrends/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/repository/PerformanceRepository.java
+/Users/jackynorm/GitHub/frontend-tracktrends/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/model/Performance.java
+/Users/jackynorm/GitHub/frontend-tracktrends/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/TracktrendsApplication.java
+/Users/jackynorm/GitHub/frontend-tracktrends/backend-tracktrends/tracktrends/src/main/java/com/jackynorm/tracktrends/controller/PerformanceController.java
