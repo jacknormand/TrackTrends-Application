@@ -16,20 +16,17 @@ public class Performance {
 	@Column(name = "rank")
 	public Integer rank;
 
+	@Column(name = "gender")
+	public String gender;
+
 	@Column(name = "athlete")
 	public String athlete;
 
 	@Column(name = "team")
 	public String team;
 
-	@Column(name = "time")
-	public Double time;
-
-	@Column(name = "mark")
-	public Double mark;
-
-	@Column(name = "score")
-	public Integer score;
+	@Column(name = "result")
+	public Double result;
 
 	@Column(name = "meet")
 	public String meet;
