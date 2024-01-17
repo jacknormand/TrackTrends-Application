@@ -1,25 +1,25 @@
 <div class="grid grid-cols-2 gap-4 mb-4">
    <div class="flex items-center justify-center rounded">
-      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
-         <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <label for="events" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+         <select id="events" (change)="changeEvent()"  [(ngModel)]="selectedEvent" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    dark:text-white">
          <option selected>Choose event</option>
-         <option value="US">United States</option>
-         <option value="CA">Canada</option>
-         <option value="FR">France</option>
-         <option value="DE">Germany</option>
+         <option *ngFor="let event of eventMapping | keyvalue">{{ event.key }}</option>
          </select>
    </div>
    <div class="flex items-center justify-center rounded  h-28 ">
       <label class="relative inline-flex items-center cursor-pointer">
-         <input type="checkbox" value="" class="sr-only peer">
+         <input id="genderToggle" type="checkbox" [(ngModel)]="genderToggle" (ngModelChange)="changeEvent()" class="sr-only peer">
          <div class="w-14 h-7 bg-blue-500 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all  peer-checked:bg-pink-500"></div>
-         <span class="ms-3 text-sm font-medium text-gray-900 ">Male</span>
+         <span for="genderToggle" class="ms-3 text-sm font-medium text-gray-900 ">{{ genderToggle ? 'Women' : 'Men' }}</span>
        </label>
+
    </div>
 </div> 
 
  <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 ">
-   <p class="text-2xl text-gray-400 ">
-      Data visual
-   </p>
+   <!-- <p class="text-2xl text-gray-400 ">
+      Select a valid event to view data
+   </p> -->
+
+   <app-line-chart></app-line-chart>
 </div>
