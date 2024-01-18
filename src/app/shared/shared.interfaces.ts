@@ -53,3 +53,4 @@ export function convertFloatToTime(floatValue: number): string {
       return `${seconds.toFixed(2)}`;
     }
   }
+

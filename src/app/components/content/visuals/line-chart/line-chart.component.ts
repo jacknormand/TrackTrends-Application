@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DataService } from '../../../../data.service';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
+import { EventMappingItem, eventMapping, convertFloatToTime } from '../../../../shared/shared.interfaces';
 
 @Component({
   selector: 'app-line-chart',
@@ -19,6 +20,16 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.dataService.dbName$.subscribe(dbName => {
+      this.dbName = dbName;
+      // Do something with the dbName in this component
+      // unused currently. might use in the future to convert seconds into minutes for longer running events
+      // function to convert already made as well, just need to implement.
+      // not too important rn
+
+    });
+
     // create chart here. nothing special happens here
     this.lineChart = new Chart('line-chart', {
       type: 'line',
@@ -40,8 +51,32 @@ export class LineChartComponent implements OnInit {
         maintainAspectRatio: false,
         scales: {
           y: {
-              beginAtZero: false
-          }
+              beginAtZero: false,
+              // ticks: {
+              //   callback: (value: string | number) => {
+              //     console.log("HELLO")
+              //     // Check if the current event is a running event
+              //     const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
+              //     const isRunningEvent = currentEvent?.isRunningEvent ?? false;
+
+                  
+              //     const numericValue = (value as number);
+              //     if (isRunningEvent){
+              //       console.log("RUNNING")
+              //       return convertFloatToTime(numericValue)
+              //     }
+              //     else {
+              //       return numericValue
+              //     }
+                  
+              //     // Apply the conversion function if it's a running event
+              //     return isRunningEvent ? convertFloatToTime(numericValue) : value.toString();
+                  
+              //   },
+              // },
+
+            }
+
         },
       }
 
@@ -51,28 +86,34 @@ export class LineChartComponent implements OnInit {
     this.lineChart.canvas.parentNode.style.height = '100%';
     this.lineChart.canvas.parentNode.style.width = '100%';
 
-    this.dataService.dbName$.subscribe(dbName => {
-      this.dbName = dbName;
-      // Do something with the dbName in this component
-      // unused currently. might use in the future to convert seconds into minutes for longer running events
-      // function to convert already made as well, just need to implement.
-      // not too important rn
-    });
-
     // Subscribe to changes in the data service
     this.dataService.chartData$.subscribe((data) => {
        // Update the chart data
        this.chartData = data;
-
        // Call the method to update the D3 chart (you need to implement this method)
        this.updateChart();
     });
   }
 
+
+  
+
   updateChart(): void {
+
     // if valid for event and data is received
     // otherwise probably invalid because someone clicked for like womens decathlon or something
-    if (this.chartData != null){
+    if (this.chartData != null && this.dbName){
+
+      // const tickCallback = (value: string | number) => {
+      //   // Check if the current event is a running event
+      //   const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
+      //   const isRunningEvent = currentEvent?.isRunningEvent ?? false;
+        
+      //   const numericValue = (value as number);
+      //   // Apply the conversion function if it's a running event
+      //   return isRunningEvent ? convertFloatToTime(numericValue) : value.toString();
+        
+      // }
 
       // FILTER OUT 2020
       // remove this line if you want 2020
@@ -86,9 +127,13 @@ export class LineChartComponent implements OnInit {
       this.lineChart.data.datasets[0].data = values;
       this.lineChart.data.datasets[0].label = "Average of Top 95 Marks for Year";
 
+      // // Update y-axis options
+      // this.lineChart.options.scales.y.ticks.callback = tickCallback
+
 
     }
     else {
+      
       this.lineChart.data.labels = [];
       this.lineChart.data.datasets[0].data = [];
       this.lineChart.data.datasets[0].label = "Invalid event for gender";

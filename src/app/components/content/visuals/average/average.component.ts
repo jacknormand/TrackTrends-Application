@@ -42,6 +42,7 @@ export class AverageComponent {
   // pull database name from selected event
   // basically just converts user facing name into database name
   const mappedEvent = (eventMapping.find(item => item.displayName === this.selectedEvent) || {}).dbName;
+
   // TODO: move this into a different file when deploying app
   const apiUrl = `http://localhost:8080/api/avgforevent/${gender}/${mappedEvent}`;
 
