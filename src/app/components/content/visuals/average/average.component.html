@@ -3,7 +3,7 @@
       <label for="events" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
          <select id="events" (change)="changeEvent()"  [(ngModel)]="selectedEvent" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    dark:text-white">
          <option selected>Choose event</option>
-         <option *ngFor="let event of eventMapping | keyvalue">{{ event.key }}</option>
+         <option *ngFor="let event of eventMapping" >{{ event.displayName }}</option>
          </select>
    </div>
    <div class="flex items-center justify-center rounded  h-28 ">
@@ -16,10 +16,6 @@
    </div>
 </div> 
 
- <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 ">
-   <!-- <p class="text-2xl text-gray-400 ">
-      Select a valid event to view data
-   </p> -->
-
+ <div class="relative min-h-fit  flex items-center justify-center  h-96 mb-4 rounded bg-gray-50 ">
    <app-line-chart></app-line-chart>
 </div>

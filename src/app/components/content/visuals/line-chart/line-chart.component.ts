@@ -1,22 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import * as d3 from 'd3';
+import { CommonModule } from '@angular/common';
 import { DataService } from '../../../../data.service';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-line-chart',
   standalone: true,
-  imports: [],
-  // templateUrl: './line-chart.component.html',
-  template: '<svg width="500" height="300"></svg>',
-  styleUrl: './line-chart.component.css'
+  imports: [CommonModule],
+  templateUrl: './line-chart.component.html',
+  styleUrl: './line-chart.component.css',
 })
 export class LineChartComponent implements OnInit {
-
+  lineChart:any;
   chartData: number[][] = [];
-
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
+    
+    this.lineChart = new Chart('line-chart', {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Average of Top 95 Marks for Year',
+            data: [],
+            fill: false,
+            backgroundColor: 'rgba(50, 100, 255, .25)',
+            borderColor: 'rgba(250, 100, 20, 1)',
+            borderWidth: 2
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+              beginAtZero: false
+          }
+        }
+      }
+
+      
+    });
+
     // Subscribe to changes in the data service
     this.dataService.chartData$.subscribe((data) => {
        // Update the chart data
@@ -27,8 +57,25 @@ export class LineChartComponent implements OnInit {
   }
 
   updateChart(): void {
-    
+    if (this.chartData != null){
+      const years = this.chartData.map(point => point[0].toString());
+      const values = this.chartData.map(point => point[1]);
+      this.lineChart.data.labels = years;
+      this.lineChart.data.datasets[0].data = values;
 
+      this.lineChart.canvas.parentNode.style.height = '100%';
+      this.lineChart.canvas.parentNode.style.width = '100%';
+
+    }
+    else {
+      this.lineChart.data.labels = [];
+      this.lineChart.data.datasets[0].data = [];
+    }
+
+    this.lineChart.update();
 
   }
+
 }
+
+
