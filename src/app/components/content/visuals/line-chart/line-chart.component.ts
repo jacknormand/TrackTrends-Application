@@ -52,33 +52,35 @@ export class LineChartComponent implements OnInit {
         scales: {
           y: {
               beginAtZero: false,
-              // ticks: {
-              //   callback: (value: string | number) => {
-              //     console.log("HELLO")
-              //     // Check if the current event is a running event
-              //     const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
-              //     const isRunningEvent = currentEvent?.isRunningEvent ?? false;
-
+              ticks: {
+                callback: (value: string | number) => {
+                  // Check if the current event is a running event
+                  const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
+                  const isRunningEvent = currentEvent?.isRunningEvent ?? false;
+                  const numericValue = (value as number);                  
+                  // Apply the conversion function if it's a running event
+                  return isRunningEvent ? convertFloatToTime(numericValue) : numericValue.toFixed(2);
                   
-              //     const numericValue = (value as number);
-              //     if (isRunningEvent){
-              //       console.log("RUNNING")
-              //       return convertFloatToTime(numericValue)
-              //     }
-              //     else {
-              //       return numericValue
-              //     }
-                  
-              //     // Apply the conversion function if it's a running event
-              //     return isRunningEvent ? convertFloatToTime(numericValue) : value.toString();
-                  
-              //   },
-              // },
-
+                },
+              },
+            },
+          },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (tooltipItem: any) => {
+                // Format the tooltip content as needed
+                const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
+                const isRunningEvent = currentEvent?.isRunningEvent ?? false;
+                const numericValue = (tooltipItem.parsed.y as number);
+                return isRunningEvent ?  `${convertFloatToTime(numericValue)}` : `${numericValue.toFixed(2)}`;
             }
-
-        },
+          }
+        }
       }
+
+    },
+
 
     });
 
@@ -108,18 +110,15 @@ export class LineChartComponent implements OnInit {
       //   // Check if the current event is a running event
       //   const currentEvent = eventMapping.find((event) => event.dbName === this.dbName);
       //   const isRunningEvent = currentEvent?.isRunningEvent ?? false;
-        
       //   const numericValue = (value as number);
       //   // Apply the conversion function if it's a running event
-      //   return isRunningEvent ? convertFloatToTime(numericValue) : value.toString();
-        
+      //   return isRunningEvent ? convertFloatToTime(numericValue) : numericValue.toFixed(2);
       // }
 
       // FILTER OUT 2020
       // remove this line if you want 2020
       // skew data massively
       this.chartData = this.chartData.filter(entry => entry[0] !== 2020);
-
       // update graph. also runs on init
       const years = this.chartData.map(point => point[0].toString());
       const values = this.chartData.map(point => point[1]);
@@ -132,6 +131,7 @@ export class LineChartComponent implements OnInit {
 
 
     }
+    // invalid
     else {
       
       this.lineChart.data.labels = [];
