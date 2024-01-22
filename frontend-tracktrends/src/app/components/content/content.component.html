@@ -2,32 +2,47 @@
 
 
 
-       <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-          <p class="text-2xl text-gray-400 dark:text-gray-500">
-             Home
-          </p>
+       <div class="flex flex-col items-center justify-center h-48 mb-4 rounded mt-6">
+         <div class="bg-gray-200">
+          <p class="text-center text-5xl text-gray-600 font-medium">
+             Welcome to
+          <br>
+            Track Trends
+         </p>
+         <p class="text-center text-sm text-gray-600 font-medium ">
+            A web-based tool for viewing data on college track & field
+        </p>
+        <p class="text-center text-xs text-gray-400 font-medium mb-5 mt-3">
+         Select an option from the sidebar to get started<br>
+         </p>
+      </div>
        </div>
-       <div class="grid grid-cols-2 gap-4">
-          <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-               Home
-             </p>
-          </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-               Home
-             </p>
-          </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-               Home
-             </p>
-          </div>
-          <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-             <p class="text-2xl text-gray-400 dark:text-gray-500">
-               Home
-             </p>
-          </div>
-       </div>
+
+       <div class="border-t-2 border-gray-400 flex flex-col items-center justify-center">
+         <p class="  text-center text-xs text-gray-400 font-medium mb-5 mt-20">
+            Below is a list of the 100 highest performing teams in Divison 1 Track & Field<br>
+            Teams are ranked by number of performances in the top 95 from 2012-2023
+            </p>
+         <div class="w-fit md:w-3/4 ">
+            <div class="flex bg-blue-950 rounded-md">
+               <p class="ml-5 flex-1 items-center text-base font-bold text-white ">
+                  Team
+               </p>
+            <div class="mr-5 inline-flex items-center text-base font-bold text-white ">
+               Performances
+            </div>
+         </div>
+         <li class="rounded-md border-x-2 border-blue-950 list-none even:bg-gray-50 odd:bg-gray-200 pb-2 pt-2" *ngFor="let item of chartData.slice(0,100)">
+            <div class=" flex">
+                  <p class="ml-5 flex-1 text-sm font-medium text-gray-900 truncate ">
+                     {{item[0]}}
+                  </p>
+               <div class="mr-5 inline-flex items-center text-base font-semibold text-gray-900 ">
+                  {{item[1]}}
+               </div>
+            </div>
+         </li>
+         </div>
+      </div>
 
  
