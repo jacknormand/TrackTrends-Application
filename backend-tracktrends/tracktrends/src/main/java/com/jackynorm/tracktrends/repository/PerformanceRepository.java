@@ -30,12 +30,13 @@ public interface PerformanceRepository extends JpaRepository<Performance, Intege
 
     // average of top 10 marks
 
-    // most common month for every mark! (depending on event does it differ?)
-    @Query("SELECT MONTH(p.date) AS month, COUNT(p) AS count " +
+    // most common day/month for every mark! (depending on event does it differ?)
+    @Query("SELECT p.event, MONTH(p.date) AS month, DAY(p.date) AS day, COUNT(p) AS count " +
            "FROM Performance p " +
-           "GROUP BY MONTH(p.date) " +
-           "ORDER BY COUNT(p) DESC")
-    List<Object[]> findMostCommonMonth();
+           "WHERE p.season = :season " +
+           "GROUP BY p.event, MONTH(p.date), DAY(p.date) " +
+           "ORDER BY p.event, MONTH(p.date), DAY(p.date)")
+    List<Object[]> findEventPerformancesByMonthAndSeason(@Param("season") String season);
 
 
     // all time greatest marks: any similarities? time, team, location

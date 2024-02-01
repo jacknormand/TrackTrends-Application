@@ -10,14 +10,14 @@
          <p class="text-center text-sm text-gray-600 font-medium ">
             A web-based tool for viewing data on college track & field
         </p>
-        <p class="text-center text-xs text-gray-400 font-medium mb-5 mt-3">
+        <p class="text-center text-xs text-gray-400 font-normal mb-5 mt-3">
          Select an option from the sidebar to get started<br>
          </p>
       </div>
        </div>
 
        <div class="border-t-2 border-gray-400 flex flex-col items-center justify-center">
-         <p class="  text-center text-xs text-gray-400 font-medium mb-5 mt-20">
+         <p class="  text-center text-xs text-gray-400 font-normal mb-5 mt-20">
             Below is a list of the 100 highest performing teams in Divison 1 Track & Field<br>
             Teams are ranked by number of performances in the top 95 from 2012-2023
             </p>
@@ -30,8 +30,8 @@
                Performances
             </div>
          </div>
-         <li class="rounded-md border-x-2 border-blue-950 list-none even:bg-gray-50 odd:bg-gray-200 pb-2 pt-2" *ngFor="let item of chartData.slice(0,100)">
-            <div class=" flex">
+         <li class="last:border-b-2 rounded-md border-x-2 border-blue-950 list-none even:bg-gray-50 odd:bg-gray-200 pb-2 pt-2" *ngFor="let item of chartData.slice(0,100)">
+            <div class="flex">
                   <p class="ml-5 flex-1 text-sm font-medium text-gray-900 truncate ">
                      {{item[0]}}
                   </p>

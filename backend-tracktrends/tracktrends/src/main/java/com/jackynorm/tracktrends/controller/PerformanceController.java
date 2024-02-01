@@ -2,6 +2,8 @@ package com.jackynorm.tracktrends.controller;
 import com.jackynorm.tracktrends.model.Performance;
 import com.jackynorm.tracktrends.repository.PerformanceRepository;
 
+import retrofit2.http.Path;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -60,11 +62,10 @@ public class PerformanceController {
 		}
     }
 
-	@GetMapping("/timecount")
-    public ResponseEntity<List<Object[]>> timeCount() {
+	@GetMapping("/timecount/{season}")
+    public ResponseEntity<List<Object[]>> findEventPerformancesByMonthAndSeason(@PathVariable String season) {
         try {
-			System.out.println("hello");
-			List<Object[]> performances = performanceRepository.findMostCommonMonth();
+			List<Object[]> performances = performanceRepository.findEventPerformancesByMonthAndSeason(season);
 
 			if (performances.isEmpty()) {
                 System.out.println("none found");

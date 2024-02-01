@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class TimeComponent {
 
+  isToggleChecked = false;
+  toggleButtonText = 'outdoor';
+
+  onToggleChange() {
+    this.isToggleChecked = !this.isToggleChecked;
+    this.toggleButtonText = this.isToggleChecked ? 'indoor' : 'outdoor';
+  }
 }
