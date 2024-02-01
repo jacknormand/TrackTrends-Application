@@ -59,4 +59,27 @@ public class PerformanceController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
+
+	@GetMapping("/timecount")
+    public ResponseEntity<List<Object[]>> timeCount() {
+        try {
+			System.out.println("hello");
+			List<Object[]> performances = performanceRepository.findMostCommonMonth();
+
+			if (performances.isEmpty()) {
+                System.out.println("none found");
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+			}
+			return new ResponseEntity<>(performances, HttpStatus.OK);
+		} catch (Exception e) {
+            System.out.println(e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
+
+
+
+
+
 }
