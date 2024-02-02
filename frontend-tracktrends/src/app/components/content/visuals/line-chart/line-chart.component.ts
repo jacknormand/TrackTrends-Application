@@ -40,8 +40,8 @@ export class LineChartComponent implements OnInit {
             label: 'Average of Top 95 Marks for Year',
             data: [],
             fill: false,
-            backgroundColor: 'rgba(50, 100, 255, .25)',
-            borderColor: 'rgba(250, 100, 20, 1)',
+            backgroundColor: 'rgba(251, 146, 60, 1)',
+            borderColor: 'rgba(23, 37, 84, 1)',
             borderWidth: 2
           },
         ]

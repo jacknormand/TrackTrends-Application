@@ -62,10 +62,10 @@ public class PerformanceController {
 		}
     }
 
-	@GetMapping("/timecount/{season}")
-    public ResponseEntity<List<Object[]>> findEventPerformancesByMonthAndSeason(@PathVariable String season) {
+	@GetMapping("/timecount/{season}/{event}")
+    public ResponseEntity<List<Object[]>> findEventPerformancesByMonthAndSeason(@PathVariable String season, @PathVariable String event) {
         try {
-			List<Object[]> performances = performanceRepository.findEventPerformancesByMonthAndSeason(season);
+			List<Object[]> performances = performanceRepository.findEventPerformancesByMonthAndSeason(season, event);
 
 			if (performances.isEmpty()) {
                 System.out.println("none found");
