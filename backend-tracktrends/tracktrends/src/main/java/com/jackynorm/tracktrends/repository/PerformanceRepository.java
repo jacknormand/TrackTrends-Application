@@ -33,7 +33,7 @@ public interface PerformanceRepository extends JpaRepository<Performance, Intege
     // most common day/month for every mark! (depending on event does it differ?)
     @Query("SELECT p.event, MONTH(p.date) AS month, DAY(p.date) AS day, COUNT(p) AS count " +
            "FROM Performance p " +
-           "WHERE p.season = :season AND p.event = :event " +
+           "WHERE p.season = :season AND p.event = :event AND p.rank <= 16" +
            "GROUP BY p.event, MONTH(p.date), DAY(p.date) " +
            "ORDER BY p.event, MONTH(p.date), DAY(p.date)")
     List<Object[]> findEventPerformancesByMonthAndSeason(@Param("season") String season, @Param("event") String event);
