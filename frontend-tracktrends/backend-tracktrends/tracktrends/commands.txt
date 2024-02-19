@@ -1,4 +1,0 @@
-mvn compile to compile
-mvn test compiles and test
-mvn package  does everything
-mvn spring-boot:run

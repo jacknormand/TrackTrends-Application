@@ -17,12 +17,7 @@ export class BarChartComponent implements OnInit {
   constructor(private dataService: DataBarService){ 
   }
 
-
-
-
-
   ngOnInit(): void {
-
     this.barChart = new Chart('bar-chart', {
       type: 'bar',
       data: {
@@ -40,10 +35,6 @@ export class BarChartComponent implements OnInit {
       options: {
         responsive:true,
         maintainAspectRatio: false,
-
-
-
-
         },
     });
 
@@ -58,7 +49,6 @@ export class BarChartComponent implements OnInit {
     });
 
   }
-
   updateChart(): void { 
 
     if (this.chartData != null){
@@ -70,22 +60,15 @@ export class BarChartComponent implements OnInit {
 
       const labels = chartDataForBarChart.map(point => point.label);
       const data = chartDataForBarChart.map(point => point.data);
-      
-
-      
-
-
       this.barChart.data.labels = labels;
       this.barChart.data.datasets[0].data = data;
-      this.barChart.data.datasets[0].label = "Results";
-
-
+      this.barChart.data.datasets[0].label = "Top 16 Performances for Each Date";
     }
 
     else {
       this.barChart.data.labels = [];
       this.barChart.data.datasets[0].data = [];
-      this.barChart.data.datasets[0].label = "Invalid data, refresh";
+      this.barChart.data.datasets[0].label = "Invalid event for gender";
     }
 
     this.barChart.update();

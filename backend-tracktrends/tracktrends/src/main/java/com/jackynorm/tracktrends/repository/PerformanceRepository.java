@@ -13,8 +13,12 @@ public interface PerformanceRepository extends JpaRepository<Performance, Intege
     // List<Performance> findAllOregon();
 
     // top 100 counts per team
-    @Query("SELECT TRIM(p.team), COUNT(p) FROM Performance p GROUP BY p.team ORDER BY COUNT(p) DESC")
+    @Query("SELECT TRIM(p.team), COUNT(p) FROM Performance p WHERE p.rank <= 16 GROUP BY p.team ORDER BY COUNT(p) DESC")
     List<Object[]> top100CountTeam();
+    
+    // top 100 counts per team
+    @Query("SELECT TRIM(p.team), COUNT(p) FROM Performance p GROUP BY p.team ORDER BY COUNT(p) DESC")
+    List<Object[]> top100CountTeamOther(); 
     
     // average of all 100 marks for a given : EVENT
     // gets for all years
@@ -38,8 +42,14 @@ public interface PerformanceRepository extends JpaRepository<Performance, Intege
            "ORDER BY p.event, MONTH(p.date), DAY(p.date)")
     List<Object[]> findEventPerformancesByMonthAndSeason(@Param("season") String season, @Param("event") String event);
 
+    // finds event U. each event returns the top 5 universities
+    @Query(nativeQuery = true, value = "SELECT event, team, performanceCount FROM (SELECT p.event, p.team, COUNT(p) AS performanceCount, ROW_NUMBER() OVER (PARTITION BY p.event ORDER BY COUNT(p) DESC) AS rank FROM topperformances p WHERE p.rank <= 16 GROUP BY p.event, p.team) AS ranked_performance WHERE rank <= 5 ORDER BY event, performanceCount DESC")
+    List<Object[]> eventUniversity();
 
-    // all time greatest marks: any similarities? time, team, location
+    // Same thing but not top 16
+    @Query(nativeQuery = true, value = "SELECT event, team, performanceCount FROM (SELECT p.event, p.team, COUNT(p) AS performanceCount, ROW_NUMBER() OVER (PARTITION BY p.event ORDER BY COUNT(p) DESC) AS rank FROM topperformances p GROUP BY p.event, p.team) AS ranked_performance WHERE rank <= 5 ORDER BY event, performanceCount DESC")
+    List<Object[]> besteventUniversity();
+    // next: all time greatest marks: any similarities? time, team, location
 
 
 }

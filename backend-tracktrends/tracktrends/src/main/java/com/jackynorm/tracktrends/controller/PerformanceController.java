@@ -80,7 +80,38 @@ public class PerformanceController {
     }
 
 
+	@GetMapping("/eventU")
+    public ResponseEntity<List<Object[]>> eventUniversity() {
+        try {
+			List<Object[]> performances = performanceRepository.eventUniversity();
 
+			if (performances.isEmpty()) {
+                System.out.println("none found");
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+			}
+			return new ResponseEntity<>(performances, HttpStatus.OK);
+		} catch (Exception e) {
+            System.out.println(e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
+	
+	@GetMapping("/besteventU")
+    public ResponseEntity<List<Object[]>> besteventUniversity() {
+        try {
+			List<Object[]> performances = performanceRepository.besteventUniversity();
+
+			if (performances.isEmpty()) {
+                System.out.println("none found");
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+			}
+			return new ResponseEntity<>(performances, HttpStatus.OK);
+		} catch (Exception e) {
+            System.out.println(e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
 
 }
