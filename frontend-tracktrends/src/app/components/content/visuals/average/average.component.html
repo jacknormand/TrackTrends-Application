@@ -1,5 +1,5 @@
-<div class="grid grid-cols-2 gap-4 mb-4 ">
-   <div class="flex items-center flex-col justify-center rounded ">
+<div class=" rounded-lg  grid grid-cols-2 gap-4 mb-4 ">
+   <div class="  flex items-center flex-col justify-center rounded ">
       <label for="events" class="block mb-2 text-sm font-medium text-gray-900 "></label>
          <select id="events" (change)="changeEvent()"  [(ngModel)]="selectedEvent" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    dark:text-white">
          <option selected>Choose event</option>
@@ -18,7 +18,7 @@
 
  <div class="relative min-h-fit  flex-col flex items-center justify-center  h-96 mb-4 rounded bg-gray-50 ">
    <app-line-chart></app-line-chart>
-   <p class="ms-3 pt-2 text-xs font-medium text-gray-400 ">Taken from top 95 marks in the NCAA for each year. Avg. marks are shown in min:sec for every running event, meters for field events, and points for multis.
+   <p class="ms-3 pt-2 pb-2 text-xs font-medium text-gray-400 ">Taken from top 95 marks in the NCAA for each year. Avg. marks are shown in min:sec for every running event, meters for field events, and points for multis.
        Year 2020 is not included because every graph is massively skewed. Thanks COVID :(<br>
       The point of this graph is to view increases or decreases over recent years. Basically: are people getting better?</p>
 </div>

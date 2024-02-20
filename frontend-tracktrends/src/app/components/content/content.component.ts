@@ -1,12 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AverageComponent } from './visuals/average/average.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [CommonModule, AverageComponent, HttpClientModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })

@@ -1,1 +1,30 @@
-<p>best works!</p>
+<div class="border-gray-400 flex flex-col items-center justify-center">
+<p class="  text-center text-xs text-gray-400 font-normal mb-5">
+   Below are tables showing which universities are best at which events<br>
+   Teams are ranked by number of top 16 regular season performances each year from 2012-2023
+   </p>
+<div class="pt-2 w-full md:w-1/2  ">
+
+<li class="list-none pb-10" *ngFor="let event of events">
+   <div class="flex justify-center bg-blue-950 rounded-md">
+      <p class="text-base font-bold text-white ">
+         {{ event.name }}
+      </p>
+   </div>
+      <ul>
+         <li class="last:border-b-0 bg-gray-50 first:border-t-0 rounded-md border-x-2 border-blue-950 list-none first:bg-opacity-50 first:bg-yellow-300" *ngFor="let school of event.schools">
+            <div class="flex border-dashed border-b-2 border-gray-500">
+
+               <p class="w-1/2 text-center text-sm font-medium text-gray-900 truncate ">
+                  {{ school.name }}
+               </p>
+            <p class="w-1/2 text-center items-center text-base font-semibold text-gray-900 ">
+               {{ school.number }}
+            </p>
+         </div>
+         </li>
+      </ul>
+</li>
+</div>
+</div>
+
