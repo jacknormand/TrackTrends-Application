@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EventMappingItem, eventMapping } from '../../../../shared/shared.interfaces';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-best',
@@ -21,7 +22,7 @@ export class BestComponent {
   }
 
   makeAPICall(): void {
-    const apiUrl = 'http://localhost:8080/api/eventU';
+    const apiUrl = `${environment.apiUrl}/eventU`;
 
     this.httpClient.get(apiUrl).subscribe(
       (data: any) => {

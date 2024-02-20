@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { EventMappingItem, eventMapping } from '../../../../shared/shared.interfaces';
 import { DataBarService } from '../../../../data-bar.service';
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-time',
@@ -45,7 +46,7 @@ export class TimeComponent {
     const mappedEvent = (eventMapping.find(item => item.displayName === this.selectedEvent) || {}).dbName;
 
     // TODO: move this into a different file when deploying app
-    const apiUrl = `http://localhost:8080/api/timecount/${season}/${mappedEvent}`;
+    const apiUrl = `${environment.apiUrl}/timecount/${season}/${mappedEvent}`;
     
     this.httpClient.get(apiUrl).subscribe(
       (data: any) => {

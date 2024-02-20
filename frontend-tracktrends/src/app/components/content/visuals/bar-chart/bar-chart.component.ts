@@ -68,7 +68,7 @@ export class BarChartComponent implements OnInit {
     else {
       this.barChart.data.labels = [];
       this.barChart.data.datasets[0].data = [];
-      this.barChart.data.datasets[0].label = "Invalid event for gender";
+      this.barChart.data.datasets[0].label = "Invalid event choice for gender/season";
     }
 
     this.barChart.update();

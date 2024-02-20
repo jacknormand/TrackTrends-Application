@@ -136,7 +136,7 @@ export class LineChartComponent implements OnInit {
       
       this.lineChart.data.labels = [];
       this.lineChart.data.datasets[0].data = [];
-      this.lineChart.data.datasets[0].label = "Invalid event for gender/season";
+      this.lineChart.data.datasets[0].label = "Invalid event choice for gender/season";
     }
 
     this.lineChart.update();

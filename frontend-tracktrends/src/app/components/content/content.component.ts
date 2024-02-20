@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-content',
@@ -19,7 +20,7 @@ export class ContentComponent {
   }
 
   makeAPICall(): void {
-    const apiUrl = `http://localhost:8080/api/top100count`;
+    const apiUrl = `${environment.apiUrl}/top100count`;
 
   this.httpClient.get(apiUrl).subscribe(
     (data: any) => {

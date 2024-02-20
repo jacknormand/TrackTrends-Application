@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { DataService } from '../../../../data.service';
 import { EventMappingItem, eventMapping } from '../../../../shared/shared.interfaces';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-average',
@@ -44,7 +45,7 @@ export class AverageComponent {
   const mappedEvent = (eventMapping.find(item => item.displayName === this.selectedEvent) || {}).dbName;
 
   // TODO: move this into a different file when deploying app
-  const apiUrl = `http://localhost:8080/api/avgforevent/${gender}/${mappedEvent}`;
+  const apiUrl = `${environment.apiUrl}/avgforevent/${gender}/${mappedEvent}`;
 
   this.httpClient.get(apiUrl).subscribe(
     (data: any) => {
