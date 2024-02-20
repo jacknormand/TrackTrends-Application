@@ -2,6 +2,7 @@
 
 # database info
 env.properties
+application.properties
 
 #database dump
 *.sql
