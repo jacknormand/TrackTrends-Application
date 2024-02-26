@@ -2,3 +2,9 @@ mvn compile to compile
 mvn test compiles and test
 mvn package  does everything
 mvn spring-boot:run
+mvn package -DskipTests
+java -jar target/whatever to run in docker container
+set db to:
+psql trackdb
+psql -U <user> -W -f <path_for_your_file/banco.sql> database
+export $(cat varz.env | xargs) && env
