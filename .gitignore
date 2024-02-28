@@ -1,10 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# database info
-# env.properties
-# application.properties
+#valuables:
+application.properties
+*.pem
+*.key
+*.p12
 
-#database dump
+#database dump and commands
 *.sql
 *.txt
 
