@@ -9,6 +9,7 @@ services:
       - POSTGRES_USER=${PUSER}
       - POSTGRES_PASSWORD=${PPASSWORD}
       - POSTGRES_DB=${PDB}
+      - POSTGRES_HOST_AUTH_METHOD="trust"
     volumes:
       - ./trackdata.sql:/docker-entrypoint-initdb.d/trackdata.sql
     ports:
@@ -20,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '8081:8080'
+      - '80:8080'
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/${PDB}
       - SPRING_DATASOURCE_USERNAME=${PUSER}
