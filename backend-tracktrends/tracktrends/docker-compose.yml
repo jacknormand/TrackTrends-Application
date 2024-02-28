@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '8443:8443'
+      - '443:443'
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/${PDB}
       - SPRING_DATASOURCE_USERNAME=${PUSER}

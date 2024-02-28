@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # database info
-env.properties
-application.properties
+# env.properties
+# application.properties
 
 #database dump
 *.sql
