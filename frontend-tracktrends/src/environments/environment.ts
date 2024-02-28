@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://tracktrendsapi.jacknormand.com/api'
+    apiUrl: 'https://tracktrendsapi.jacknormand.com/api'
   };
