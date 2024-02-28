@@ -8,3 +8,7 @@ set db to:
 psql trackdb
 psql -U <user> -W -f <path_for_your_file/banco.sql> database
 export $(cat varz.env | xargs) && env
+docker build . -t trends:v1
+docker-compose up
+
+
