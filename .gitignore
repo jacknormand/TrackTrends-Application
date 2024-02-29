@@ -8,7 +8,7 @@ application.properties
 
 #database dump and commands
 *.sql
-*.txt
+#*.txt
 
 # Compiled output
 /dist

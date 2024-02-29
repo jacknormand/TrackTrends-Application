@@ -1,0 +1,41 @@
+mvn compile to compile
+mvn test compiles and test
+mvn package  does everything
+mvn spring-boot:run
+
+first
+mvn package -DskipTests
+
+then these to just run backend
+java -jar target/tracktrends-0.0.1-SNAPSHOT.jar
+java -jar target/whatever to run in docker container
+
+finally do this 
+docker build . -t trends:v1
+
+set db to:
+psql trackdb
+
+for copying sql
+psql -U <user> -W -f <path_for_your_file/db.sql> database
+
+running app
+docker build . -t trends:v1
+docker-compose up add -d for indefinetie
+
+to remove images
+To delete all containers including its volumes use,
+
+docker rm -vf $(docker ps -aq)
+
+To delete all the images,
+
+docker rmi -f $(docker images -aq)
+
+
+export vars:
+export $(cat varz.env | xargs) && env
+
+send resources over
+scp -r src/main/resources root@IPDROPLET:TrackTrends-Application/backend-tracktrends/tracktrends/src/main/
+
