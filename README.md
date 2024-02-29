@@ -22,6 +22,7 @@ Welcome to tracktrends! This application is designed to provide users with easy 
   - Hosted on a [DigitalOcean](https://www.digitalocean.com/) Droplet
 
 ## Want to run this on your machine? Get started below
+NOTE: This setup is extremely brief intentionally because I don't expect anyone to actually run this themselves. <br>
  1. Clone this repo: `git clone https://github.com/jacknormand/TrackTrends-Application.git`
  2. Setup the backend
     - Fill out the docker-compose.yml with your environment variables for your database
@@ -32,7 +33,6 @@ Welcome to tracktrends! This application is designed to provide users with easy 
     - `docker-compose up` to run it!
 3. Setup the frontend
     - Install Angular and run `ng serve --open`
-This setup is extremely brief intentionally because I don't expect anyone to actually run this themselves. 
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
